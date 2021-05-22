@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Login.qml</file>
+        <file>Users/AddUserDialog.qml</file>
+        <file>Users/Users.qml</file>
+        <file>Users/ChangePasswordDialog.qml</file>
+        <file>Assets/Icons.qml</file>
+        <file>Assets/qmldir</file>
+        <file>Assets/Icon.qml</file>
+        <file>Users/Userlist.qml</file>
+        <file>Users/DeleteUserDialog.qml</file>
+        <file>Assets/Colors.qml</file>
+        <file>Devices/Devices.qml</file>
+        <file>Devices/EditDeviceDialog.qml</file>
+        <file>Controls/SmallIconButton.qml</file>
+        <file>Controls/TextFieldDialog.qml</file>
+        <file>Controls/PropertyNameLabel.qml</file>
+        <file>Devices/DeviceDelegate.qml</file>
+        <file>Devices/PropertyFormDelegate.qml</file>
+        <file>Controls/ColorSlider.qml</file>
+        <file>Devices/EditPropertySettingsDialog.qml</file>
+        <file>Devices/EditPropertyDialog.qml</file>
+        <file>Devices/TriggerRPCDialog.qml</file>
+        <file>Users/ChangePermissionDialog.qml</file>
+        <file>Devices/TextInputDialog.qml</file>
+        <file>ResourceTest/ListResources.qml</file>
+        <file>ResourceTest/ObjectResources.qml</file>
+        <file>ResourceTest/Services.qml</file>
+        <file>Assets/Font Awesome 5 Free-Solid-900.otf</file>
+    </qresource>
+</RCC>
