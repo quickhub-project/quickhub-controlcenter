@@ -1,3 +1,5 @@
+
+
 /*
 QuickHub ControlCenter - www.quickhub.org
 Copyright (C) 2021 Friedemann Metzger - mail (at) friedemann-metzger.de
@@ -15,15 +17,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QuickHub 1.0
 import QtQuick.Layouts 1.1
 import "../Assets"
 import "../Controls"
-ListView
-{
+
+ListView {
     id: docroot
     Layout.fillHeight: true
     Layout.fillWidth: true
@@ -31,77 +32,68 @@ ListView
     signal deleteUser(string userID)
     signal editUser(string userID)
     signal setPermissions(string userID, var permissions)
-    delegate:
-    ItemDelegate
-    {
+    delegate: ItemDelegate {
         id: userDelegate
         width: parent.width
         height: 40
-        RowLayout
-        {
+        RowLayout {
             width: parent.width
             height: parent.height
             spacing: 0
 
-            Item
-            {
-                 width: 40
-                 height: parent.height
-                 Icon
-                 {
-                     id:icon
+            Item {
+                width: 40
+                height: parent.height
+                Icon {
+                    id: icon
                     property var permissions: userPermissions
-                    icon:  permissions["isAdmin"] == true ? Icons.admin : Icons.user
+                    icon: permissions["isAdmin"] == true ? Icons.admin : Icons.user
                     anchors.centerIn: parent
-                 }
+                }
             }
 
-            Label
-            {
+            Label {
                 Layout.fillHeight: true
                 verticalAlignment: Text.AlignVCenter
                 Layout.maximumWidth: 180
-                Layout.minimumWidth:   180
-                text: userID + (sessionCount > 0 ? "<font color=\"grey\"> ["+sessionCount+"]</font>" :"")
+                Layout.minimumWidth: 180
+                text: userID + (sessionCount > 0 ? "<font color=\"grey\"> ["
+                                                   + sessionCount + "]</font>" : "")
             }
 
-            Label
-            {
+            Label {
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillHeight: true
-                Layout.maximumWidth:  180
-                Layout.minimumWidth:   180
+                Layout.maximumWidth: 180
+                Layout.minimumWidth: 180
                 text: userName
             }
 
-            Item
-            {
+            Item {
                 Layout.fillHeight: true
-                Layout.fillWidth:  true
+                Layout.fillWidth: true
             }
 
-            SmallIconButton
-            {
-                onClicked:
-                {
+            SmallIconButton {
+                onClicked: {
                     docroot.setPermissions(userID, icon.permissions)
-                    docroot.currentPermissions = Qt.binding( function(){return icon.permissions})
+                    docroot.currentPermissions = Qt.binding(function () {
+                        return icon.permissions
+                    })
                 }
-                visible: userDelegate.hovered
+                visible: true
                 icon: Icons.admin
             }
 
-            SmallIconButton
-            {
+            SmallIconButton {
                 onClicked: docroot.editUser(userID)
-                visible: userDelegate.hovered
+                visible: true
                 icon: Icons.edit
             }
 
-            SmallIconButton
-            {
+            SmallIconButton {
                 onClicked: docroot.deleteUser(userID)
-                visible: userDelegate.hovered
+                visible: true
                 icon: Icons.remove
             }
         }

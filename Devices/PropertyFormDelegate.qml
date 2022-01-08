@@ -1,3 +1,5 @@
+
+
 /*
 QuickHub ControlCenter - www.quickhub.org
 Copyright (C) 2021 Friedemann Metzger - mail (at) friedemann-metzger.de
@@ -15,15 +17,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import "../Controls"
 import "../Assets"
 
-
-Item
-{
+Item {
     id: docroot
     width: parent.width
     height: 40
@@ -33,47 +32,44 @@ Item
     property alias name: nameLabel.text
     property alias value: valueLabel.text
 
-    signal editClicked()
-    signal settingsClicked()
+    signal editClicked
+    signal settingsClicked
     default property alias content: row.children
     property bool transferring
 
-    Label
-    {
+    Label {
         id: nameLabel
-        width: 100
+        width: 130
         anchors.left: parent.left
         anchors.leftMargin: 0
         horizontalAlignment: Text.AlignRight
         anchors.verticalCenter: parent.verticalCenter
+        wrapMode: Text.Wrap
         text: property.name
         color: "grey"
     }
 
-    Label
-    {
+    Label {
         id: valueLabel
-        x: 110
+        x: 140
         anchors.verticalCenter: parent.verticalCenter
-        text: property.value+" "+property.unitString
+        text: property.value + " " + property.unitString
     }
 
-    Icon
-    {
+    Icon {
         id: transferring
-        anchors.left:  valueLabel.right
+        anchors.left: valueLabel.right
         anchors.leftMargin: 10
         anchors.verticalCenter: parent.verticalCenter
         icon: Icons.bidirectionalArrows
         visible: docroot.transferring
     }
 
-    Row
-    {
+    Row {
         id: row
         height: 40
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        visible: docroot.hovered
+        visible: true //docroot.hovered
     }
 }

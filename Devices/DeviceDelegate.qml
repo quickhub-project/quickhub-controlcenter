@@ -89,7 +89,7 @@ ItemDelegate
     Row
     {
         anchors.rightMargin: 10
-        visible: docroot.hovered
+        visible: true //docroot.hovered
         id: row
         height: 40
         anchors.right: icon.left

@@ -156,7 +156,7 @@ Item {
 
                 Label {
                     width: 180
-                    x: 110
+                    x: 140
                     text: "General Properties"
                     font.weight: Font.Bold
                     anchors.bottom: parent.bottom
@@ -210,7 +210,7 @@ Item {
 
                     Button {
                         anchors.verticalCenter: parent.verticalCenter
-                        x: 110
+                        x: 140
                         height: 34
                         text: hasUpdate ? updateInfo.version : ""
                     }
@@ -224,7 +224,7 @@ Item {
                 visible: column.visibleChildren.length > 1
                 Label {
                     width: 180
-                    x: 110
+                    x: 140
                     text: "Firmware"
                     font.weight: Font.Bold
                     anchors.bottom: parent.bottom
@@ -277,7 +277,7 @@ Item {
                             property: modelData
                             name: modelData.name + ":"
                             value: modelData.value + " " + modelData.unitString
-                            hovered: parent.hovered
+                            hovered: true //parent.hovered
                         }
                     }
                 }
@@ -289,7 +289,7 @@ Item {
                 opacity: .5
                 Label {
                     width: 180
-                    x: 110
+                    x: 140
                     text: "Properties"
                     font.weight: Font.Bold
                     anchors.bottom: parent.bottom
@@ -341,7 +341,7 @@ Item {
                         name: modelData.name + ":"
                         value: modelData.value + " " + modelData.unitString
 
-                        hovered: parent.hovered
+                        hovered: true //parent.hovered
                     }
                 }
             }
@@ -352,7 +352,7 @@ Item {
                 opacity: .5
                 Label {
                     width: 180
-                    x: 110
+                    x: 140
                     text: "Remote Procedure Calls"
                     font.weight: Font.Bold
                     anchors.bottom: parent.bottom
@@ -379,7 +379,7 @@ Item {
                     PropertyFormDelegate {
                         name: " "
                         value: modelData.name
-                        hovered: parent.hovered
+                        hovered: true //parent.hovered
 
                         SmallIconButton {
                             icon: Icons.blizzard
