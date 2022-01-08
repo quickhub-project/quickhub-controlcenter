@@ -1,3 +1,5 @@
+
+
 /*
 QuickHub ControlCenter - www.quickhub.org
 Copyright (C) 2021 Friedemann Metzger - mail (at) friedemann-metzger.de
@@ -15,7 +17,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QuickHub 1.0
@@ -24,102 +25,84 @@ import QtQuick.Controls 2.0
 import "../Assets"
 import "../Controls"
 
-Item
-{
-    StackView
-    {
+Item {
+    StackView {
         id: docroot
         property DeviceModel currentDevice
 
         anchors.fill: parent
         anchors.topMargin: 50
 
-        TextInputDialog
-        {
+        TextInputDialog {
             id: hookDeviceDialog
             property string uuid
-            title:"Device-Provisioning"
+            title: "Device-Provisioning"
 
-            onAccepted:
-            {
-              onClicked:deviceListModelAll.setMapping(text, uuid)
+            onAccepted: {
+                onClicked: deviceListModelAll.setMapping(text, uuid)
             }
         }
 
-        Component
-        {
+        Component {
             id: editDeviceView
-            EditDeviceDialog
-            {
+            EditDeviceDialog {
                 id: editDeviceDialog
                 device: docroot.currentDevice
             }
         }
 
-        initialItem:
-        Item
-        {
+        initialItem: Item {
             id: deviceOverview
 
             clip: true
-            DeviceHandleListModel
-            {
+            DeviceHandleListModel {
                 id: deviceListModel
             }
 
-            DeviceListModel
-            {
+            DeviceListModel {
                 id: deviceListModelAll
             }
 
-            RoleFilter
-            {
+            RoleFilter {
                 id: filteredDeviceListModelALl
-                sourceModel:deviceListModelAll
-                booleanFilterRoleName: "isRegistered";
+                sourceModel: deviceListModelAll
+                booleanFilterRoleName: "isRegistered"
                 inverse: true
             }
 
-            RoleFilter
-            {
+            RoleFilter {
                 id: filter
                 searchString: searchInput.text
                 stringFilterSearchRole: "type"
                 sourceModel: deviceListModel
             }
 
-            ColumnLayout
-            {
+            ColumnLayout {
                 anchors.margins: 20
                 anchors.fill: parent
 
-                TextField
-                {
+                TextField {
                     Layout.fillWidth: true
                     id: searchInput
                     placeholderText: "Search"
                 }
 
-                Flickable
-                {
+                Flickable {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     clip: true
                     contentHeight: content.height
 
-                    Column
-                    {
+                    Column {
                         id: content
                         width: parent.width
 
-                        Item
-                        {
+                        Item {
                             visible: newDevicesRepeater.count > 0
                             width: parent.width
                             height: 40
 
-                            Label
-                            {
+                            Label {
                                 text: "Not registered devices"
                                 anchors.bottom: parent.bottom
                                 anchors.bottomMargin: 5
@@ -127,29 +110,24 @@ Item
                             }
                         }
 
-                        Repeater
-                        {
+                        Repeater {
                             id: newDevicesRepeater
                             model: filteredDeviceListModelALl
-                            Item
-                            {
+                            Item {
                                 width: parent.width
                                 height: 70
 
-                                DeviceDelegate
-                                {
-                                    _text: shortID == "" ? uuid  : shortID
+                                DeviceDelegate {
+                                    _text: shortID == "" ? uuid : shortID
                                     _type: type
                                     anchors.fill: parent
                                     anchors.margins: 5
                                     _icon: Icons.star
-
-                                    SmallIconButton
-                                    {
+                                    iconColor: Colors.orange
+                                    SmallIconButton {
                                         enabled: online
                                         icon: Icons.online
-                                        onClicked:
-                                        {
+                                        onClicked: {
                                             console.log(online)
                                             hookDeviceDialog.uuid = uuid
                                             hookDeviceDialog.open()
@@ -159,16 +137,13 @@ Item
                             }
                         }
 
-                        Item
-                        {
+                        Item {
                             width: parent.width
                             height: 40
-                            Item
-                            {
+                            Item {
                                 width: parent.width
                                 height: 40
-                                Label
-                                {
+                                Label {
                                     text: "Registered devices"
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 5
@@ -177,36 +152,32 @@ Item
                             }
                         }
 
-                        Repeater
-                        {
+                        Repeater {
                             model: filter
-                            Item
-                            {
+                            Item {
                                 width: parent.width
                                 height: 70
 
-                                DeviceModel
-                                {
+                                DeviceModel {
                                     id: deviceModelObj
                                     resource: mappings[0]
                                 }
 
-                                DeviceDelegate
-                                {
+                                DeviceDelegate {
                                     anchors.fill: parent
                                     anchors.margins: 5
                                     deviceModel: deviceModelObj
                                     _text: mappings[0]
-                                    onClicked:
-                                    {
-                                       docroot.currentDevice = deviceModelObj
-                                       docroot.push(editDeviceView)
+                                    onClicked: {
+                                        docroot.currentDevice = deviceModelObj
+                                        docroot.push(editDeviceView)
                                     }
 
-                                    SmallIconButton
-                                    {
+
+                                    SmallIconButton {
                                         icon: Icons.remove
-                                        onClicked:deviceListModelAll.setMapping(mappings[0], "")
+                                        onClicked: deviceListModelAll.setMapping(
+                                                       mappings[0], "")
                                     }
                                 }
                             }

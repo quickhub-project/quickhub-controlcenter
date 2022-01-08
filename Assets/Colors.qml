@@ -24,7 +24,11 @@ QtObject {
     readonly property color black: "#000"
     readonly property color black_op10: transparentColor("000000", 5)
     readonly property color black_op20: transparentColor(black, 20)
-
+    readonly property color orange: "orange"
+    readonly property color red: "red"
+    readonly property color grey: "grey"
+    readonly property color main_orange: "#FF4500"
+    readonly property color green: "#3bad03"
     function transparentColor(color, opacity) {
         var number = Math.round(opacity * 2.55)
         number = number.toString(16)

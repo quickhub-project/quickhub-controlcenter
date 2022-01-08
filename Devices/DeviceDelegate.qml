@@ -1,3 +1,5 @@
+
+
 /*
 QuickHub ControlCenter - www.quickhub.org
 Copyright (C) 2021 Friedemann Metzger - mail (at) friedemann-metzger.de
@@ -15,7 +17,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
@@ -24,70 +25,66 @@ import QuickHub 1.0
 import "../Assets"
 import "../Controls"
 
-ItemDelegate
-{
+ItemDelegate {
     id: docroot
 
-    property DeviceModel    deviceModel
-    property string         _text: deviceModel.description != "" ? deviceModel.description : deviceModel.uuid
-    property string         _type: deviceModel.type
-    property string         _icon: deviceModel.deviceOnline ? Icons.online : Icons.offline
-    property var            _properties
-    default property alias  content: row.children
-
-    clip:true
+    property DeviceModel deviceModel
+    property string _text: deviceModel.description
+                           != "" ? deviceModel.description : deviceModel.uuid
+    property string _type: deviceModel.type
+    property string _icon: deviceModel.deviceOnline ? Icons.online : Icons.offline
+    property var _properties
+    default property alias content: row.children
+    property color iconColor: deviceModel.deviceOnline ? Colors.green : Colors.grey
+    clip: true
     opacity: deviceModel.deviceOnline ? 1 : 0.5
 
-    Rectangle
-    {
+    Rectangle {
         anchors.fill: parent
-        color:"black"
+        color: "black"
         opacity: .05
     }
 
     height: 65
     Layout.fillWidth: true
 
-    ColumnLayout
-    {
+    ColumnLayout {
         anchors.fill: parent
         anchors.margins: 10
 
-        Label
-        {
+        Label {
             color: Material.accent
             Layout.fillWidth: true
             text: docroot._text
             font.pixelSize: 18
         }
 
-        Label
-        {
+        Label {
             color: "grey"
             Layout.fillWidth: true
-            text:docroot._type
+            text: docroot._type
             font.pixelSize: 12
         }
 
-        Item{Layout.fillHeight: true; Layout.fillWidth: true}
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
     }
 
-
-
-    Icon
-    {
+    Icon {
         id: icon
         icon: docroot._icon
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.rightMargin: 20
+        iconColor: docroot.iconColor
         iconSize: 20
         width: 20
         height: 20
     }
 
-    Row
-    {
+    Row {
         anchors.rightMargin: 10
         visible: true //docroot.hovered
         id: row
