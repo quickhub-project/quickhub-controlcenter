@@ -9,19 +9,19 @@ build_QHControlCenter:
     - git submodule sync --recursive
     - git submodule update --init --recursive
     - source /emsdk/emsdk_env.sh
-    - mkdir -p ./src/build
+    - mkdir build
     - mkdir result
-    - cd src/build
+    - cd build
     - /qtbase/bin/qmake ../QHControlCenter.pro DEFINES+=WEB_ASSEMBLY DEFINES+=__EMSCRIPTEN__ LIBS+=-lidbfs.js
     - make -j8
     - echo "CI_COMMIT_SHA = ${CI_COMMIT_SHA}" > build-info.txt
     - ls
-    - cp build-info.txt ../../result
-    - cp QHControlCenter.html ../../result
-    - cp QHControlCenter.wasm ../../result
-    - cp QHControlCenter.js ../../result
-    - cp qtloader.js ../../result
-    - ls ../../result
+    - cp build-info.txt ../result
+    - cp QHControlCenter.html ../result
+    - cp QHControlCenter.wasm ../result
+    - cp QHControlCenter.js ../result
+    - cp qtloader.js ../result
+    - ls ../result
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
